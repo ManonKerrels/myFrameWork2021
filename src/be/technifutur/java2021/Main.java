@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         if(args.length == 1){
             try {
+                @SuppressWarnings({"unchecked"})
                 Class<Application> app = (Class<Application>) Class.forName(args[0]);
                 Constructor<Application> constructor = app.getDeclaredConstructor();
                 Application application = constructor.newInstance();
