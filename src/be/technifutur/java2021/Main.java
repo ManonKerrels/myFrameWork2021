@@ -11,6 +11,7 @@ public class Main {
                 Class<Application> app = (Class<Application>) Class.forName(args[0]);
                 Constructor<Application> constructor = app.getDeclaredConstructor();
                 Application application = constructor.newInstance();
+                new MyFramework().start(application);
             } catch (ClassNotFoundException e) {
                 System.out.printf("la classe : %s n'a pas été trouvée !%n",args[0]);
             } catch (ClassCastException e){
