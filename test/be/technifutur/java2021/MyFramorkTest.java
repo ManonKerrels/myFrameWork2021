@@ -15,7 +15,7 @@ public class MyFramorkTest {
         Application app = EasyMock.createMock(Application.class);
         app.start();
         EasyMock.expect(app.isFinsish()).andReturn(true);
-        EasyMock.expect(app.getScreen()).andReturn("Hello world");
+        EasyMock.expect(app.getScreen()).andReturn("Hello world\n");
         EasyMock.replay(app);
         return app;
     }
@@ -36,7 +36,7 @@ public class MyFramorkTest {
         EasyMock.expect(app.getScreen()).andReturn("What's your name? : ");
         app.request("Yannick");
         EasyMock.expect(app.isFinsish()).andReturn(true);
-        EasyMock.expect(app.getScreen()).andReturn("Hello Yannick");
+        EasyMock.expect(app.getScreen()).andReturn("Hello Yannick\n");
         EasyMock.replay(app);
         return app;
     }

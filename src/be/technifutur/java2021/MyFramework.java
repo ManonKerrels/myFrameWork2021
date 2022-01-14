@@ -13,33 +13,38 @@ public class MyFramework {
     private Supplier<String> supplier;
 
     public void setSupplier(Supplier<String> supplier) {
-        this.supplier = () -> {
-            String request = supplier.get();
-            systemOut.println(request);
-            return request;
-        };
+        this.supplier = supplier;
     }
 
     public void start(Application app) {
-        systemIn = System.in;
-        systemOut = System.out;
-        System.setIn(null);
-        System.setOut(null);
+        configureSystem();
+        Supplier<String> input = getInput();
         try {
             app.start();
             while (!app.isFinsish()) {
                 systemOut.print(app.getScreen());
-                app.request(getInput().get());
+                app.request(input.get());
             }
             systemOut.print(app.getScreen());
 
         } catch (Exception e) {
             systemOut.printf("L’application c’est arrêtée sur l’erreur : %s - %s", e.getClass(), e.getMessage());
         } finally {
-            System.setIn(systemIn);
-            System.setOut(systemOut);
+            restoreSystem();
         }
 
+    }
+
+    private void restoreSystem() {
+        System.setIn(systemIn);
+        System.setOut(systemOut);
+    }
+
+    private void configureSystem() {
+        systemIn = System.in;
+        systemOut = System.out;
+        System.setIn(null);
+        System.setOut(null);
     }
 
     private Supplier<String> getInput() {
