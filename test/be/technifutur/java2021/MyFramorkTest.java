@@ -25,6 +25,7 @@ public class MyFramorkTest {
         Application app = getHelloYannick();
         MyFramework myFramework = new MyFramework();
         myFramework.setSupplier(()->"Yannick");
+        myFramework.setConsumer((s)->{});
         myFramework.start(app);
         EasyMock.verify(app);
     }
