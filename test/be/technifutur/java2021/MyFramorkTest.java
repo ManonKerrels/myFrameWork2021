@@ -7,7 +7,9 @@ public class MyFramorkTest {
     @Test
     void testStartHelloWorld(){
         Application app = getHelloWorld();
-        new MyFramework().start(app);
+        MyFramework myFramework = new MyFramework();
+        myFramework.setConsumer((s)->{});
+        myFramework.start(app);
         EasyMock.verify(app);
     }
 
@@ -23,10 +25,7 @@ public class MyFramorkTest {
     @Test
     void testStartHelloYannick(){
         Application app = getHelloYannick();
-        MyFramework myFramework = new MyFramework();
-        myFramework.setSupplier(()->"Yannick");
-        myFramework.setConsumer((s)->{});
-        myFramework.start(app);
+        new MyFramework().start(app,()->"Yannick",(s)->{});
         EasyMock.verify(app);
     }
 
