@@ -1,0 +1,57 @@
+Progression pour récupérer le pom effectif
+------------------------------------------
+   1. Appel du goal help du plugin help (le plugin org.apache.maven.plugins:maven-help-plugin:3.2.0 est identifié par un préfixe)
+      - mvn help:help ou mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:help
+       
+         ...
+         help:effective-pom
+            Displays the effective POM as an XML for this build, with the active profiles
+            factored in, or a specified artifact. If verbose, a comment is added to each
+            XML element describing the origin of the line.
+         ...
+         help:help
+            Display help information on maven-help-plugin.
+            Call mvn help:help -Ddetail=true -Dgoal=<goal-name> to display parameter
+            details.
+
+   2. Appel du goal help du plugin help avec des options pour plus de détails
+      - mvn help:help -Ddetail=true -Dgoal=effective-pom
+      
+         ...
+         output
+            Optional parameter to write the output of this help in a given file,
+            instead of writing to the console.
+            Note: Could be a relative path.
+            User property: output
+
+         verbose (Default: false)
+           Output POM input location as comments.
+           User property: verbose
+
+   3. Appel du goal effective-pom du plugin help avec options
+      - mvn help:effective-pom -Dverbose -Doutput=effectivepom.txt
+      
+      à remarquer
+       - création du fichier effectivepom.txt
+       - beaucoup plus de clauses de configuration que le pom de départ
+       - 3 origines pour les clauses de configuration
+         - be.technifutur:myFrameWork:0.0.1-SNAPSHOT
+         - org.apache.maven:maven-model-builder:3.8.4:super-pom
+         - org.apache.maven:maven-core:3.8.4:default-lifecycle-bindings
+      - situation par défaut des dossiers sources
+         <build>
+             <sourceDirectory>...\myFrameWork2021\src\main\java</sourceDirectory>
+             <scriptSourceDirectory>...\myFrameWork2021\src\main\scripts</scriptSourceDirectory>
+             <testSourceDirectory>...\myFrameWork2021\src\test\java</testSourceDirectory>
+             <outputDirectory>...\myFrameWork2021\target\classes</outputDirectory>
+             <testOutputDirectory>...\myFrameWork2021\target\test-classes</testOutputDirectory>
+             <resources>
+               <resource>
+                 <directory>...\myFrameWork2021\src\main\resources</directory>
+               </resource>
+             </resources>
+             <testResources>
+               <testResource>
+                 <directory>...\myFrameWork2021\src\test\resources</directory>
+               </testResource>
+             </testResources>
