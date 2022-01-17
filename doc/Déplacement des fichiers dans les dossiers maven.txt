@@ -1,0 +1,11 @@
+Déplacement des fichiers dans les dossiers maven
+------------------------------------------------
+
+   les fichiers de src sont déplacés dans src\main\java
+      <sourceDirectory>...\myFrameWork2021\src\main\java</sourceDirectory>
+   le dossier test\be est déplacé dans src\test\java
+      <testSourceDirectory>...\myFrameWork2021\src\test\java</testSourceDirectory>
+   le fichier test\log4j.xml est déplacé dans scr\test\resources
+      <testResource>
+        <directory>...\myFrameWork2021\src\test\resources</directory>
+      </testResource>
