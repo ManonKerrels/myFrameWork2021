@@ -1,3 +1,3 @@
 open module myFrameWork2021 {
-    requires slf4j.api;
+    requires org.slf4j;
 }
