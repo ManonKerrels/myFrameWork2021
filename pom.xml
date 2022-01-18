@@ -45,6 +45,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.9.0</version>
          </plugin>
+         <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M4</version>
+         </plugin>
       </plugins>
    </build>
 
