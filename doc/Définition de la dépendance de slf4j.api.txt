@@ -1,0 +1,27 @@
+Définition de la dépendance de slf4j.api
+----------------------------------------
+
+   1. Comment déclarer un dépendance avec maven
+      - site : https://maven.apache.org/pom.html#dependencies
+         analyse de la doc
+         
+   2. recherche google : maven slf4j.api
+      - site : https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+         selection de la dernière version 1.8.0-beta4
+         copie de la syntaxe de dépendance
+         
+   3. Mise à jour de la version du pluggin compiler
+      - site : https://maven.apache.org/plugins/index.html
+      - recherche de la dernière version du plugin
+      - configuration de la version dans pom.xml
+      <project>
+      ...
+         <build>
+            <plugins>
+               <plugin>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>3.9.0</version>
+               </plugin>
+            </plugins>
+         </build>
+      </project>
