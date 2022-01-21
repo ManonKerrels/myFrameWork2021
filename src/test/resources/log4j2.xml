@@ -11,7 +11,7 @@
 
     <Loggers>
 
-        <Root level="INFO">
+        <Root level="warn">
             <AppenderRef ref="stdout"/>
         </Root>
 
