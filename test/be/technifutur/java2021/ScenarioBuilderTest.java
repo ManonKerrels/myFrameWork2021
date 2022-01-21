@@ -26,11 +26,6 @@ public class ScenarioBuilderTest {
 
     }
 
-    @Test
-    void testMain(){
-       Main.main("be.technifutur.java2021.HelloYannickScenario");
-    }
-
     private void testScenario(ApplicationFactory sb) {
         Application application = sb.getApplication();
         testScenarioWithApplication(sb, application);
