@@ -1,42 +1,45 @@
 package be.technifutur.java2021;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import be.technifutur.java2021.api.ApplicationFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.Iterator;
+import java.util.Optional;
+import java.util.ServiceLoader;
+
+/**
+ * Classe de démarrage du framework. L'application à exécutée est récupéré sous la forme d'un service fournit dans le modulePath
+ */
 public class Main {
+
+    private static final Logger LOGGER =  LogManager.getLogger( Main.class );
+
+    /**
+     * Exécute le framework {@link MyFramework}. Avec le service {@link ApplicationFactory} fournit
+     * @param args pas utilisé.
+     */
     public static void main(String... args) {
-        try {
-            ApplicationFactory factory = null;
-            if (args.length == 1) {
-                factory = newInstance(args[0], ApplicationFactory.class);
-                new MyFramework().start(factory);
-            } else {
-                System.out.println(" Usage : java [option] be.technifutur.java2021.Main <Nom_de_la_classe_Application>");
+            Optional<ApplicationFactory> factory = null;
+                factory = newInstance();
+                if(factory.isPresent()){
+                    new MyFramework().start(factory.get());
+
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
+    private static Optional<ApplicationFactory> newInstance(){
+        ServiceLoader<ApplicationFactory> services = ServiceLoader.load(ApplicationFactory.class);
 
-    }
+        Iterator<ApplicationFactory> iterator = services.iterator();
 
-    private static <T> T newInstance(String ApplicationClassName, Class<T> type) throws Exception {
-        try {
-            type = (Class<T>) Class.forName(ApplicationClassName);
-            Constructor<T> constructor = type.getDeclaredConstructor();
-            return constructor.newInstance();
-        } catch (ClassNotFoundException e) {
-            throw new Exception(String.format("la classe : %s n'a pas été trouvée !%n", ApplicationClassName), e);
-        } catch (ClassCastException e) {
-            throw new Exception(String.format("la classe : %s n'implémente pas %s !%n", ApplicationClassName, Application.class), e);
-        } catch (NoSuchMethodException e) {
-            throw new Exception(String.format("la classe : %s n'a pas de constructeur sans paramètres !%n", ApplicationClassName), e);
-        } catch (IllegalAccessException e) {
-            throw new Exception(String.format("le constructeur de la classe : %s n'a pas accessible !%n", ApplicationClassName), e);
-        } catch (InstantiationException e) {
-            throw new Exception(String.format("la classe : %s ne peux pas être instanciée !%n", ApplicationClassName), e);
-        } catch (InvocationTargetException e) {
-            throw new Exception(String.format("le constructeur de la classe : %s a soulevé l'exception %s !%n", ApplicationClassName, e), e);
+        if (iterator.hasNext()){
+            ApplicationFactory factory = iterator.next();
+            LOGGER.info(String.format("ApplicationFactory : %s",factory.getClass()));
+            return Optional.of(factory);
+        }else {
+            LOGGER.error("no found ApplicationFactory ");
+            return Optional.empty();
         }
-    }
+     }
 }

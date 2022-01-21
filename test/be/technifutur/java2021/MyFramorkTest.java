@@ -1,5 +1,6 @@
 package be.technifutur.java2021;
 
+import be.technifutur.java2021.api.Application;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ public class MyFramorkTest {
     void testStartHelloWorld(){
         Application app = getHelloWorld();
         MyFramework myFramework = new MyFramework();
-        myFramework.setConsumer((s)->{});
+        myFramework.setOutput((s)->{});
         myFramework.start(app);
         EasyMock.verify(app);
     }
