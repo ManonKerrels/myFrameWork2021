@@ -1,6 +1,8 @@
 package be.technifutur.java2021;
 
 
+import be.technifutur.java2021.api.Application;
+import be.technifutur.java2021.api.ApplicationFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -1,4 +1,6 @@
-package be.technifutur.java2021;
+package be.technifutur.java2021.api;
+
+import be.technifutur.java2021.api.Application;
 
 import java.util.Scanner;
 import java.util.function.Consumer;

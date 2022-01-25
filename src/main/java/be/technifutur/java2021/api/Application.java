@@ -1,4 +1,4 @@
-package be.technifutur.java2021;
+package be.technifutur.java2021.api;
 
 public interface Application {
     void start();

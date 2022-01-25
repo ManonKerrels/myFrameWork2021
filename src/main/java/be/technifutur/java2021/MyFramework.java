@@ -1,7 +1,9 @@
 package be.technifutur.java2021;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import be.technifutur.java2021.api.Application;
+import be.technifutur.java2021.api.ApplicationFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -10,7 +12,7 @@ import java.util.function.Supplier;
 
 public class MyFramework {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(MyFramework.class);
+    private static final Logger LOGGER =  LogManager.getLogger( MyFramework.class );
 
     private InputStream systemIn;
     private PrintStream systemOut;
